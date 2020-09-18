@@ -191,7 +191,7 @@ namespace AcFunDanmu
 
         internal byte[] UnregisterRequest()
         {
-            var payload = GeneratePayload(Command.PING);
+            var payload = GeneratePayload(Command.UNREGISTER);
 
             var body = payload.ToByteString();
 
@@ -258,7 +258,7 @@ namespace AcFunDanmu
                 AppId = AppId,
                 Uid = UserId,
                 InstanceId = InstanceId,
-                DecodedPayloadLen = body.Length,
+                DecodedPayloadLen = Convert.ToUInt32(body.Length),
                 EncryptionMode = PacketHeader.Types.EncryptionMode.KEncryptionSessionKey,
                 SeqId = SeqId,
                 Kpn = KPN

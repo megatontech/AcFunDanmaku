@@ -28,7 +28,7 @@ namespace AcFunDanmu {
             "cm90byLgBAoMUGFja2V0SGVhZGVyEg0KBWFwcElkGAEgASgFEgsKA3VpZBgC",
             "IAEoAxISCgppbnN0YW5jZUlkGAMgASgDEg0KBWZsYWdzGAUgASgNEjsKDGVu",
             "Y29kaW5nVHlwZRgGIAEoDjIlLkFjRnVuRGFubXUuUGFja2V0SGVhZGVyLkVu",
-            "Y29kaW5nVHlwZRIZChFkZWNvZGVkUGF5bG9hZExlbhgHIAEoBRI/Cg5lbmNy",
+            "Y29kaW5nVHlwZRIZChFkZWNvZGVkUGF5bG9hZExlbhgHIAEoDRI/Cg5lbmNy",
             "eXB0aW9uTW9kZRgIIAEoDjInLkFjRnVuRGFubXUuUGFja2V0SGVhZGVyLkVu",
             "Y3J5cHRpb25Nb2RlEigKCXRva2VuSW5mbxgJIAEoCzIVLkFjRnVuRGFubXUu",
             "VG9rZW5JbmZvEg0KBXNlcUlkGAogASgDEjIKCGZlYXR1cmVzGAsgAygOMiAu",
@@ -49,7 +49,11 @@ namespace AcFunDanmu {
 
   }
   #region Messages
-  public sealed partial class PacketHeader : pb::IMessage<PacketHeader> {
+  public sealed partial class PacketHeader : pb::IMessage<PacketHeader>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<PacketHeader> _parser = new pb::MessageParser<PacketHeader>(() => new PacketHeader());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -150,9 +154,9 @@ namespace AcFunDanmu {
 
     /// <summary>Field number for the "decodedPayloadLen" field.</summary>
     public const int DecodedPayloadLenFieldNumber = 7;
-    private int decodedPayloadLen_;
+    private uint decodedPayloadLen_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int DecodedPayloadLen {
+    public uint DecodedPayloadLen {
       get { return decodedPayloadLen_; }
       set {
         decodedPayloadLen_ = value;
@@ -267,6 +271,9 @@ namespace AcFunDanmu {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (AppId != 0) {
         output.WriteRawTag(8);
         output.WriteInt32(AppId);
@@ -289,7 +296,7 @@ namespace AcFunDanmu {
       }
       if (DecodedPayloadLen != 0) {
         output.WriteRawTag(56);
-        output.WriteInt32(DecodedPayloadLen);
+        output.WriteUInt32(DecodedPayloadLen);
       }
       if (EncryptionMode != global::AcFunDanmu.PacketHeader.Types.EncryptionMode.KEncryptionNone) {
         output.WriteRawTag(64);
@@ -311,7 +318,58 @@ namespace AcFunDanmu {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (AppId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(AppId);
+      }
+      if (Uid != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(Uid);
+      }
+      if (InstanceId != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(InstanceId);
+      }
+      if (Flags != 0) {
+        output.WriteRawTag(40);
+        output.WriteUInt32(Flags);
+      }
+      if (EncodingType != global::AcFunDanmu.PacketHeader.Types.EncodingType.KEncodingNone) {
+        output.WriteRawTag(48);
+        output.WriteEnum((int) EncodingType);
+      }
+      if (DecodedPayloadLen != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(DecodedPayloadLen);
+      }
+      if (EncryptionMode != global::AcFunDanmu.PacketHeader.Types.EncryptionMode.KEncryptionNone) {
+        output.WriteRawTag(64);
+        output.WriteEnum((int) EncryptionMode);
+      }
+      if (tokenInfo_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(TokenInfo);
+      }
+      if (SeqId != 0L) {
+        output.WriteRawTag(80);
+        output.WriteInt64(SeqId);
+      }
+      features_.WriteTo(ref output, _repeated_features_codec);
+      if (Kpn.Length != 0) {
+        output.WriteRawTag(98);
+        output.WriteString(Kpn);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -332,7 +390,7 @@ namespace AcFunDanmu {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) EncodingType);
       }
       if (DecodedPayloadLen != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DecodedPayloadLen);
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DecodedPayloadLen);
       }
       if (EncryptionMode != global::AcFunDanmu.PacketHeader.Types.EncryptionMode.KEncryptionNone) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) EncryptionMode);
@@ -397,6 +455,9 @@ namespace AcFunDanmu {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -424,7 +485,7 @@ namespace AcFunDanmu {
             break;
           }
           case 56: {
-            DecodedPayloadLen = input.ReadInt32();
+            DecodedPayloadLen = input.ReadUInt32();
             break;
           }
           case 64: {
@@ -453,7 +514,70 @@ namespace AcFunDanmu {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            AppId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Uid = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            InstanceId = input.ReadInt64();
+            break;
+          }
+          case 40: {
+            Flags = input.ReadUInt32();
+            break;
+          }
+          case 48: {
+            EncodingType = (global::AcFunDanmu.PacketHeader.Types.EncodingType) input.ReadEnum();
+            break;
+          }
+          case 56: {
+            DecodedPayloadLen = input.ReadUInt32();
+            break;
+          }
+          case 64: {
+            EncryptionMode = (global::AcFunDanmu.PacketHeader.Types.EncryptionMode) input.ReadEnum();
+            break;
+          }
+          case 74: {
+            if (tokenInfo_ == null) {
+              TokenInfo = new global::AcFunDanmu.TokenInfo();
+            }
+            input.ReadMessage(TokenInfo);
+            break;
+          }
+          case 80: {
+            SeqId = input.ReadInt64();
+            break;
+          }
+          case 90:
+          case 88: {
+            features_.AddEntriesFrom(ref input, _repeated_features_codec);
+            break;
+          }
+          case 98: {
+            Kpn = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
     #region Nested types
     /// <summary>Container for nested types declared in the PacketHeader message type.</summary>

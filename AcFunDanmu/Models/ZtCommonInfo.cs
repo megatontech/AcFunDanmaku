@@ -24,24 +24,28 @@ namespace AcFunDanmu {
     static ZtCommonInfoReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChJadENvbW1vbkluZm8ucHJvdG8SCkFjRnVuRGFubXUi9QEKDFp0Q29tbW9u",
+            "ChJadENvbW1vbkluZm8ucHJvdG8SCkFjRnVuRGFubXUi9AEKDFp0Q29tbW9u",
             "SW5mbxILCgNrcG4YASABKAkSCwoDa3BmGAIgASgJEg4KBnN1YkJpehgDIAEo",
             "CRILCgN1aWQYBCABKAMSCwoDZGlkGAUgASgJEhAKCGNsaWVudElwGAYgASgD",
             "Eg4KBmFwcFZlchgHIAEoCRILCgN2ZXIYCCABKAkSCwoDbGF0GAkgASgJEgsK",
-            "A2xvbhgKIAEoCRIMCgRtb25kGAsgASgJEgsKA25ldBgMIAEoCRILCgNzeXMY",
-            "DSABKAkSCQoBYxgOIAEoCRIQCghsYW5ndWFnZRgPIAEoCRITCgtjb3VudHJ5",
-            "Q29kZRgQIAEoCWIGcHJvdG8z"));
+            "A2xvbhgKIAEoCRILCgNtb2QYCyABKAkSCwoDbmV0GAwgASgJEgsKA3N5cxgN",
+            "IAEoCRIJCgFjGA4gASgJEhAKCGxhbmd1YWdlGA8gASgJEhMKC2NvdW50cnlD",
+            "b2RlGBAgASgJYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::AcFunDanmu.ZtCommonInfo), global::AcFunDanmu.ZtCommonInfo.Parser, new[]{ "Kpn", "Kpf", "SubBiz", "Uid", "Did", "ClientIp", "AppVer", "Ver", "Lat", "Lon", "Mond", "Net", "Sys", "C", "Language", "CountryCode" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::AcFunDanmu.ZtCommonInfo), global::AcFunDanmu.ZtCommonInfo.Parser, new[]{ "Kpn", "Kpf", "SubBiz", "Uid", "Did", "ClientIp", "AppVer", "Ver", "Lat", "Lon", "Mod", "Net", "Sys", "C", "Language", "CountryCode" }, null, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
-  public sealed partial class ZtCommonInfo : pb::IMessage<ZtCommonInfo> {
+  public sealed partial class ZtCommonInfo : pb::IMessage<ZtCommonInfo>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<ZtCommonInfo> _parser = new pb::MessageParser<ZtCommonInfo>(() => new ZtCommonInfo());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -76,7 +80,7 @@ namespace AcFunDanmu {
       ver_ = other.ver_;
       lat_ = other.lat_;
       lon_ = other.lon_;
-      mond_ = other.mond_;
+      mod_ = other.mod_;
       net_ = other.net_;
       sys_ = other.sys_;
       c_ = other.c_;
@@ -200,14 +204,14 @@ namespace AcFunDanmu {
       }
     }
 
-    /// <summary>Field number for the "mond" field.</summary>
-    public const int MondFieldNumber = 11;
-    private string mond_ = "";
+    /// <summary>Field number for the "mod" field.</summary>
+    public const int ModFieldNumber = 11;
+    private string mod_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Mond {
-      get { return mond_; }
+    public string Mod {
+      get { return mod_; }
       set {
-        mond_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        mod_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -289,7 +293,7 @@ namespace AcFunDanmu {
       if (Ver != other.Ver) return false;
       if (Lat != other.Lat) return false;
       if (Lon != other.Lon) return false;
-      if (Mond != other.Mond) return false;
+      if (Mod != other.Mod) return false;
       if (Net != other.Net) return false;
       if (Sys != other.Sys) return false;
       if (C != other.C) return false;
@@ -311,7 +315,7 @@ namespace AcFunDanmu {
       if (Ver.Length != 0) hash ^= Ver.GetHashCode();
       if (Lat.Length != 0) hash ^= Lat.GetHashCode();
       if (Lon.Length != 0) hash ^= Lon.GetHashCode();
-      if (Mond.Length != 0) hash ^= Mond.GetHashCode();
+      if (Mod.Length != 0) hash ^= Mod.GetHashCode();
       if (Net.Length != 0) hash ^= Net.GetHashCode();
       if (Sys.Length != 0) hash ^= Sys.GetHashCode();
       if (C.Length != 0) hash ^= C.GetHashCode();
@@ -330,6 +334,9 @@ namespace AcFunDanmu {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (Kpn.Length != 0) {
         output.WriteRawTag(10);
         output.WriteString(Kpn);
@@ -370,9 +377,9 @@ namespace AcFunDanmu {
         output.WriteRawTag(82);
         output.WriteString(Lon);
       }
-      if (Mond.Length != 0) {
+      if (Mod.Length != 0) {
         output.WriteRawTag(90);
-        output.WriteString(Mond);
+        output.WriteString(Mod);
       }
       if (Net.Length != 0) {
         output.WriteRawTag(98);
@@ -397,7 +404,81 @@ namespace AcFunDanmu {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Kpn.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Kpn);
+      }
+      if (Kpf.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Kpf);
+      }
+      if (SubBiz.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(SubBiz);
+      }
+      if (Uid != 0L) {
+        output.WriteRawTag(32);
+        output.WriteInt64(Uid);
+      }
+      if (Did.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Did);
+      }
+      if (ClientIp != 0L) {
+        output.WriteRawTag(48);
+        output.WriteInt64(ClientIp);
+      }
+      if (AppVer.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(AppVer);
+      }
+      if (Ver.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(Ver);
+      }
+      if (Lat.Length != 0) {
+        output.WriteRawTag(74);
+        output.WriteString(Lat);
+      }
+      if (Lon.Length != 0) {
+        output.WriteRawTag(82);
+        output.WriteString(Lon);
+      }
+      if (Mod.Length != 0) {
+        output.WriteRawTag(90);
+        output.WriteString(Mod);
+      }
+      if (Net.Length != 0) {
+        output.WriteRawTag(98);
+        output.WriteString(Net);
+      }
+      if (Sys.Length != 0) {
+        output.WriteRawTag(106);
+        output.WriteString(Sys);
+      }
+      if (C.Length != 0) {
+        output.WriteRawTag(114);
+        output.WriteString(C);
+      }
+      if (Language.Length != 0) {
+        output.WriteRawTag(122);
+        output.WriteString(Language);
+      }
+      if (CountryCode.Length != 0) {
+        output.WriteRawTag(130, 1);
+        output.WriteString(CountryCode);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -432,8 +513,8 @@ namespace AcFunDanmu {
       if (Lon.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Lon);
       }
-      if (Mond.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Mond);
+      if (Mod.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Mod);
       }
       if (Net.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Net);
@@ -491,8 +572,8 @@ namespace AcFunDanmu {
       if (other.Lon.Length != 0) {
         Lon = other.Lon;
       }
-      if (other.Mond.Length != 0) {
-        Mond = other.Mond;
+      if (other.Mod.Length != 0) {
+        Mod = other.Mod;
       }
       if (other.Net.Length != 0) {
         Net = other.Net;
@@ -514,6 +595,9 @@ namespace AcFunDanmu {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -561,7 +645,85 @@ namespace AcFunDanmu {
             break;
           }
           case 90: {
-            Mond = input.ReadString();
+            Mod = input.ReadString();
+            break;
+          }
+          case 98: {
+            Net = input.ReadString();
+            break;
+          }
+          case 106: {
+            Sys = input.ReadString();
+            break;
+          }
+          case 114: {
+            C = input.ReadString();
+            break;
+          }
+          case 122: {
+            Language = input.ReadString();
+            break;
+          }
+          case 130: {
+            CountryCode = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            Kpn = input.ReadString();
+            break;
+          }
+          case 18: {
+            Kpf = input.ReadString();
+            break;
+          }
+          case 26: {
+            SubBiz = input.ReadString();
+            break;
+          }
+          case 32: {
+            Uid = input.ReadInt64();
+            break;
+          }
+          case 42: {
+            Did = input.ReadString();
+            break;
+          }
+          case 48: {
+            ClientIp = input.ReadInt64();
+            break;
+          }
+          case 58: {
+            AppVer = input.ReadString();
+            break;
+          }
+          case 66: {
+            Ver = input.ReadString();
+            break;
+          }
+          case 74: {
+            Lat = input.ReadString();
+            break;
+          }
+          case 82: {
+            Lon = input.ReadString();
+            break;
+          }
+          case 90: {
+            Mod = input.ReadString();
             break;
           }
           case 98: {
@@ -587,6 +749,7 @@ namespace AcFunDanmu {
         }
       }
     }
+    #endif
 
   }
 
